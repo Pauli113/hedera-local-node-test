@@ -10,7 +10,7 @@ const {
     TokenCreateTransaction
 } = require("@hashgraph/sdk");
 const axios = require('axios');
-require("dotenv").config();
+
 
 async function main() {
     const myAccountId = '0.0.2'
