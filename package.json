@@ -21,6 +21,7 @@
     "@hashgraph/sdk": "^2.19.1",
     "@nestjs/config": "^2.2.0",
     "@nestjs/typeorm": "^9.0.1",
+    "@types/jest": "^29.2.4",
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.11.0",
     "dockerode": "^3.3.4",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "hardhat": "^2.11.2",
+    "jest": "^29.3.1",
     "testcontainers": "^9.1.1"
   }
 }

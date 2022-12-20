@@ -17,6 +17,7 @@ import {
 } from '@hashgraph/sdk';
 
 import { HederaFixture } from '../lib/fixtures';
+import { getJsonWalletAddress } from 'ethers/lib/utils';
 
 const HEDERA_PORT = 50211;
 const MIRROR_PORT = 5600;
@@ -25,7 +26,6 @@ const MIRROR_PORT = 5600;
 describe('Trust Engine', () => {
 
   let fixture: HederaFixture
-
   jest.setTimeout(30000)
   
   beforeEach(async () => {

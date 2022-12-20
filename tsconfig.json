@@ -19,6 +19,10 @@
       "strictBindCallApply": false,
       "forceConsistentCasingInFileNames": false,
       "noFallthroughCasesInSwitch": false,
+      "types": [
+        "mocha",
+        "jest"
+      ]
     },
     "exclude": ["node_modules", "dist", "subgraph", "test", "examples"]
   }
