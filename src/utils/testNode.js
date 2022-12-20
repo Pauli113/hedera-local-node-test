@@ -14,29 +14,29 @@ require("dotenv").config();
 
 async function main() {
     const myAccountId = '0.0.2'
-    //process.env.RELAY_OPERATOR_ID_MAIN;
     const myPrivateKey = '302e020100300506032b65700422042091132178e72057a1d7528025956fe39b0b847f200ab59b2fdd367017f3087137'
-    //process.env.RELAY_OPERATOR_KEY_MAIN;
 
     if (myAccountId == null || myPrivateKey == null) {
       throw new Error(
         "Environment variables myAccountId and myPrivateKey must be present"
       );
     }
+    /*
     const node = { "127.0.0.1:50211": new AccountId(3) };
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
-    client.setOperator(myAccountId, myPrivateKey);
+    client.setOperator(myAccountId, myPrivateKey);*/
 
-    const newAccountId = await createAccount(client);
-    await transferHbar(client, myAccountId, newAccountId);
-
+   // const newAccountId = await createAccount(client);
+    //await transferHbar(client, myAccountId, newAccountId);
+    console.log('node running at: http://localhost:9090/testnet/dashboard/')
+    /*
     const { validStart } = await createHTSToken(client);
     const transactionIdFormatted = `${myAccountId}-${validStart.replace(/\./g,'-')}`;
-    console.log(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/${transactionIdFormatted}`);
-    await getTransactionInformation(transactionIdFormatted);
+    console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/${transactionIdFormatted}`);
+    await getTransactionInformation(transactionIdFormatted);*/
 }
 
-
+/*
 const getTransactionInformation = async function(transactionIdFormatted) {
     const url = "http://localhost:5551/api/v1/transactions/"+transactionIdFormatted
     console.log('- Mirror Node Url: ' + url)
@@ -46,7 +46,7 @@ const getTransactionInformation = async function(transactionIdFormatted) {
         console.log(response.data.transactions);
         process.exit(0);
     })
-}
+}*/
 
 const createAccount = async function (client) {
     const newAccountPrivateKey = await PrivateKey.generateED25519();
@@ -60,13 +60,13 @@ const createAccount = async function (client) {
     const getReceipt = await newAccount.getReceipt(client);
     const newAccountId = getReceipt.accountId;
 
-    console.log("- New account ID is: " + newAccountId);
+    console.warn("- New account ID is: " + newAccountId);
 
     const accountBalance = await new AccountBalanceQuery()
         .setAccountId(newAccountId)
         .execute(client);
 
-    console.log(
+    console.warn(
         "- New account balance is: " +
             accountBalance.hbars.toTinybars() +
             " tinybar."
@@ -87,7 +87,7 @@ const transferHbar = async function (client, myAccountId, newAccountId) {
         .setAccountId(newAccountId)
         .execute(client);
 
-    console.log(
+    console.warn(
         "- New account balance after transfer is: " +
             balance.hbars.toTinybars() +
             " tinybar."
@@ -95,12 +95,9 @@ const transferHbar = async function (client, myAccountId, newAccountId) {
 }
 
 const createHTSToken = async function(client) {
-    const expiration = new Date();
-    expiration.setDate(expiration.getDate() + 30);
     const tokenCreate = await (await new TokenCreateTransaction()
       .setTokenName("WrappedHedera")
       .setTokenSymbol("WHBAR")
-      .setExpirationTime(expiration)
       .setDecimals(8)
       .setInitialSupply(200000000000)
       .setTreasuryAccountId(client.operatorAccountId)
@@ -114,7 +111,7 @@ const createHTSToken = async function(client) {
     const validStart = tokenCreate.transactionId.validStart.toString();
     const tokenId = receipt.tokenId.toString();
   
-    console.log(`- HTS Token Deployed with id ${tokenId}, transactionId: ${transactionId}, valid start: ${validStart}`);
+    console.warn(`- HTS Token Deployed with id ${tokenId}, transactionId: ${transactionId}, valid start: ${validStart}`);
   
     return { tokenId, transactionId, validStart };
   };
