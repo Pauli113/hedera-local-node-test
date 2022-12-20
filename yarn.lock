@@ -36,7 +36,7 @@
   "resolved" "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.18.8.tgz"
   "version" "7.18.8"
 
-"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.11.6", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.14.0", "@babel/core@^7.4.0-0", "@babel/core@^7.8.0":
+"@babel/core@*", "@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.11.6", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.4.0-0", "@babel/core@^7.8.0":
   "integrity" "sha512-cQbWBpxcbbs/IUredIPkHiAGULLV8iwgNRMFzvbhEXISp4f3rUUXE5+TIw6KwUWUR3DwyI6gmBRnmAtYaWehwQ=="
   "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.18.6.tgz"
   "version" "7.18.6"
@@ -2701,6 +2701,11 @@
     "tslib" "2.4.1"
     "uuid" "9.0.0"
 
+"@nestjs/passport@^9.0.0":
+  "integrity" "sha512-Gnh8n1wzFPOLSS/94X1sUP4IRAoXTgG4odl7/AO5h+uwscEGXxJFercrZfqdAwkWhqkKWbsntM3j5mRy/6ZQDA=="
+  "resolved" "https://registry.npmjs.org/@nestjs/passport/-/passport-9.0.0.tgz"
+  "version" "9.0.0"
+
 "@nestjs/typeorm@^9.0.1":
   "integrity" "sha512-A2BgLIPsMtmMI0bPKEf4bmzgFPsnvHqNBx3KkvaJ7hJrBQy0OqYOb+Rr06ifblKWDWS2tUPNrAFQbZjtk3PI+g=="
   "resolved" "https://registry.npmjs.org/@nestjs/typeorm/-/typeorm-9.0.1.tgz"
@@ -3427,6 +3432,11 @@
   "integrity" "sha512-TFi4HBKSGfIKsK5YCkKaaFG2m4PEDyViZmEwof3MTIgzimHLto6muaHVpbrljdIvIrFZzEq/p4nafOeLcYegrg=="
   "resolved" "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.16.tgz"
   "version" "0.4.16"
+
+"aes-js@^3.1.2":
+  "integrity" "sha512-e5pEa2kBnBOgR4Y/p20pskXI74UEz7de8ZGVo58asOtvSVG5YAbJeELPZxOmt+Bnz3rX753YKhfIn4X4l1PPRQ=="
+  "resolved" "https://registry.npmjs.org/aes-js/-/aes-js-3.1.2.tgz"
+  "version" "3.1.2"
 
 "aes-js@3.0.0":
   "integrity" "sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw=="
@@ -5402,6 +5412,20 @@
     "create-hash" "^1.1.2"
     "ethereum-cryptography" "^0.1.3"
     "rlp" "^2.2.4"
+
+"ethereumjs-wallet@^1.0.2":
+  "integrity" "sha512-CCWV4RESJgRdHIvFciVQFnCHfqyhXWchTPlkfp28Qc53ufs+doi5I/cV2+xeK9+qEo25XCWfP9MiL+WEPAZfdA=="
+  "resolved" "https://registry.npmjs.org/ethereumjs-wallet/-/ethereumjs-wallet-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "aes-js" "^3.1.2"
+    "bs58check" "^2.1.2"
+    "ethereum-cryptography" "^0.1.3"
+    "ethereumjs-util" "^7.1.2"
+    "randombytes" "^2.1.0"
+    "scrypt-js" "^3.0.1"
+    "utf8" "^3.0.0"
+    "uuid" "^8.3.2"
 
 "ethers@^5.6.9":
   "integrity" "sha512-lMGC2zv9HC5EC+8r429WaWu3uWJUCgUCt8xxKCFqkrFuBDZXDYIdzDUECxzjf2BMF8IVBByY1EBoGSL3RTm8RA=="
@@ -8437,6 +8461,27 @@
   "resolved" "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
   "version" "1.3.3"
 
+"passport-http@^0.3.0":
+  "integrity" "sha512-OwK9DkqGVlJfO8oD0Bz1VDIo+ijD3c1ZbGGozIZw+joIP0U60pXY7goB+8wiDWtNqHpkTaQiJ9Ux1jE3Ykmpuw=="
+  "resolved" "https://registry.npmjs.org/passport-http/-/passport-http-0.3.0.tgz"
+  "version" "0.3.0"
+  dependencies:
+    "passport-strategy" "1.x.x"
+
+"passport-strategy@1.x.x":
+  "integrity" "sha512-CB97UUvDKJde2V0KDWWB3lyf6PC3FaZP7YxZ2G8OAtn9p4HI9j9JLP9qjOGZFvyl8uwNT8qM+hGnz/n16NI7oA=="
+  "resolved" "https://registry.npmjs.org/passport-strategy/-/passport-strategy-1.0.0.tgz"
+  "version" "1.0.0"
+
+"passport@^0.4.0 || ^0.5.0 || ^0.6.0":
+  "integrity" "sha512-0fe+p3ZnrWRW74fe8+SvCyf4a3Pb2/h7gFkQ8yTJpAO50gDzlfjZUZTO1k5Eg9kUct22OxHLqDZoKUWRHOh9ug=="
+  "resolved" "https://registry.npmjs.org/passport/-/passport-0.6.0.tgz"
+  "version" "0.6.0"
+  dependencies:
+    "passport-strategy" "1.x.x"
+    "pause" "0.0.1"
+    "utils-merge" "^1.0.1"
+
 "password-prompt@^1.0.4":
   "integrity" "sha512-bpuBhROdrhuN3E7G/koAju0WjVw9/uQOG5Co5mokNj0MiOSBVZS1JTwM4zl55hu0WFmIEFvO9cU9sJQiBIYeIA=="
   "resolved" "https://registry.npmjs.org/password-prompt/-/password-prompt-1.1.2.tgz"
@@ -8494,6 +8539,11 @@
   "integrity" "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw=="
   "resolved" "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   "version" "4.0.0"
+
+"pause@0.0.1":
+  "integrity" "sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg=="
+  "resolved" "https://registry.npmjs.org/pause/-/pause-0.0.1.tgz"
+  "version" "0.0.1"
 
 "pbkdf2@^3.0.17", "pbkdf2@^3.0.3":
   "integrity" "sha512-iuh7L6jA7JEGu2WxDwtQP1ddOpaJNC4KlDEFfdQajSGgGPNi4OyDc2R7QnbY2bR9QjBVGwgvTdNJZoE7RaxUMA=="
@@ -10258,7 +10308,7 @@
     "is-typed-array" "^1.1.3"
     "which-typed-array" "^1.1.2"
 
-"utils-merge@1.0.1":
+"utils-merge@^1.0.1", "utils-merge@1.0.1":
   "integrity" "sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA=="
   "resolved" "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
   "version" "1.0.1"
