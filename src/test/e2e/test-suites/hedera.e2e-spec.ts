@@ -4,7 +4,10 @@ const fetch = require('cross-fetch')
 const {
   PrivateKey,
   Hbar,
-  AccountId
+  AccountId,
+  TokenFreezeTransaction,
+  Client,
+  TokenCreateTransaction
 } = require("@hashgraph/sdk")
 
 describe('hedera localnode', () => {
@@ -12,8 +15,6 @@ describe('hedera localnode', () => {
 
   it('checks if node is running', async()=> {
    
-    //fetch('http://localhost:9090/testnet/dashboard?p1=1&k1=1671520505.063039003&p2=1&k2=1671520505.540006594&p3=1&k3=1671520496.265415003')
-      //const client = Client.forLocalNode 
       await(axios
         .get('http://localhost:9090/testnet/dashboard?p1=1&k1=1671520505.063039003&p2=1&k2=1671520505.540006594&p3=1&k3=1671520496.265415003',{
           responseType: "json",
@@ -46,5 +47,6 @@ describe('hedera localnode', () => {
 
   it('checks if signing is working',async () => {
     
+
   })
 });
