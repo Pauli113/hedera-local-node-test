@@ -7,7 +7,7 @@ const {
   AccountId,
   TokenFreezeTransaction,
   Client,
-  TokenCreateTransaction,
+  AccountCreateTransaction,
   FileCreateTransaction
 } = require("@hashgraph/sdk")
 
@@ -46,13 +46,35 @@ describe('hedera localnode', () => {
       )
   })
 
-  it('should sign transactions',async () => {
+  it('should check key generation tool',async () => {
     const filePrivateKey = PrivateKey.generateED25519(); 
     console.warn(String(filePrivateKey))
     const filePublicKey = filePrivateKey.publicKey;
     console.warn(String(filePublicKey))
+    //compares if pvt and pub key are not equal
+    console.warn(filePrivateKey==filePublicKey)
+  })
 
-    
+  it('should sign transactions', async() => {
+    const ACCOUNT_ID = '0.0.1032';
+    const BASE_KEY = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
+    const client = Client.forTestnet();
+    client.setOperator(ACCOUNT_ID, BASE_KEY);
+    const filePrivateKey = PrivateKey.generateED25519(); 
+    const filePublicKey = filePrivateKey.publicKey;
+
+/*
+    const transaction = new AccountCreateTransaction()
+        .setKey(filePublicKey)
+        .setInitialBalance(new Hbar(1000))
+        .freezeWith(client)
+        const txResponse = await transaction.execute(client);
+        const receipt = await txResponse.getReceipt(client);
+      
+        const newAccountId = receipt.accountId;
+      
+        console.log("The new account ID is " +newAccountId);
+        */
   })
 
    
