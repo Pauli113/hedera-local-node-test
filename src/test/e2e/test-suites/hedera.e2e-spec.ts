@@ -7,7 +7,8 @@ const {
   AccountId,
   TokenFreezeTransaction,
   Client,
-  TokenCreateTransaction
+  TokenCreateTransaction,
+  FileCreateTransaction
 } = require("@hashgraph/sdk")
 
 describe('hedera localnode', () => {
@@ -20,7 +21,7 @@ describe('hedera localnode', () => {
           responseType: "json",
         })
         .then(function (response) {
-          console.log('node is running')
+          console.warn('node is running')
           if(response.data=''){
             throw 'No transactions'
           }
@@ -36,7 +37,7 @@ describe('hedera localnode', () => {
       })
       .then(function (response) {
        
-        console.log(response.data)
+        console.warn(response.data)
         if(response.data=''){
           throw 'No transactions'
         }
@@ -45,8 +46,16 @@ describe('hedera localnode', () => {
       )
   })
 
-  it('checks if signing is working',async () => {
-    
+  it('should sign transactions',async () => {
+    const filePrivateKey = PrivateKey.generateED25519(); 
+    console.warn(String(filePrivateKey))
+    const filePublicKey = filePrivateKey.publicKey;
+    console.warn(String(filePublicKey))
 
+    
   })
+
+   
+
+  
 });
