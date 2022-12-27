@@ -117,9 +117,13 @@ describe('hedera localnode', () => {
 
      
      const signedTransaction = transaction
-      PrivateKey.fromString("96371d4ffd34609146c6c55e15bdb9647476019847a8e7cc50b3b4b38cd291cb")
+      PrivateKey.fromString(privateKey)
 
     console.log(signedTransaction)
      
+  })
+
+  it('should create an unsigned transaction', async()=> {
+
   })
 });
