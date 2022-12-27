@@ -104,6 +104,8 @@ describe('hedera localnode', () => {
   it('should sign a transaction', async() => {
     const  accountId = process.env.MY_ACCOUNT_ID;
     const privateKey = process.env.MY_PRIVATE_KEY;
+    
+    
 
     const client = Client.forTestnet();
 
@@ -124,6 +126,25 @@ describe('hedera localnode', () => {
   })
 
   it('should create an unsigned transaction', async()=> {
+    const myAccountId = process.env.MY_ACCOUNT_ID;
+    const myPrivateKey = process.env.MY_PRIVATE_KEY;
+    const newAccountPrivateKey = PrivateKey.generateED25519(); 
+    const newAccountPublicKey = newAccountPrivateKey.publicKey;
 
+    const client = Client.forTestnet();
+
+    client.setOperator(myAccountId, myPrivateKey);
+
+    
+
+    const transaction = new AccountCreateTransaction()
+    .setKey(newAccountPublicKey)
+    .setInitialBalance(Hbar.fromTinybars(1000));
+
+    //Freeze the transaction for signing
+    //The transaction cannot be modified after this point
+    const freezeTransaction = transaction.freezeWith(client);
+
+    console.log(freezeTransaction);
   })
 });
