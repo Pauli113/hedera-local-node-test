@@ -145,6 +145,6 @@ describe('hedera localnode', () => {
     //The transaction cannot be modified after this point
     const freezeTransaction = transaction.freezeWith(client);
 
-    console.log(freezeTransaction);
+    console.warn(freezeTransaction);
   })
 });
