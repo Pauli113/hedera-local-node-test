@@ -1,6 +1,5 @@
 
 const axios = require('axios')
-const fetch = require('cross-fetch')
 const {
   PrivateKey,
   Hbar,
