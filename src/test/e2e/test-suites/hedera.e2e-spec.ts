@@ -8,8 +8,12 @@ const {
   TokenFreezeTransaction,
   Client,
   AccountCreateTransaction,
-  FileCreateTransaction
+  FileCreateTransaction,
+  Key,
+  AccountUpdateTransaction,
+  AccountBalanceQuery
 } = require("@hashgraph/sdk")
+require("dotenv").config();
 
 describe('hedera localnode', () => {
 
@@ -55,11 +59,67 @@ describe('hedera localnode', () => {
     console.warn(filePrivateKey==filePublicKey)
   })
 
-  it('should sign transactions', async() => {
-    
+  it('should create an account', async() => {
+    const myAccountId = process.env.MY_ACCOUNT_ID;
+    const myPrivateKey = process.env.MY_PRIVATE_KEY;
+    // If we weren't able to grab it, we should throw a new error
+    if (myAccountId == null ||
+      myPrivateKey == null ) {
+      throw new Error("Environment variables myAccountId and myPrivateKey must be present");
+  }
+
+  // Create our connection to the Hedera network
+  // The Hedera JS SDK makes this really easy!
+  const client = Client.forTestnet();
+
+  client.setOperator(myAccountId, myPrivateKey);
+
+  //Create new keys
+  const newAccountPrivateKey = PrivateKey.generateED25519(); 
+  const newAccountPublicKey = newAccountPrivateKey.publicKey;
+  console.warn(String(newAccountPrivateKey))
+  console.warn(String(newAccountPublicKey))
+
+
+  //Create a new account with 1,000 tinybar starting balance
+  const newAccount = await new AccountCreateTransaction()
+      .setKey(newAccountPublicKey)
+      .setInitialBalance(Hbar.fromTinybars(1000))
+      .execute(client);
+
+  // Get the new account ID
+  const getReceipt = await newAccount.getReceipt(client);
+  const newAccountId = getReceipt.accountId;
+
+  console.log("The new account ID is: " +newAccountId);
+
+  //Verify the account balance
+  const accountBalance = await new AccountBalanceQuery()
+      .setAccountId(newAccountId)
+      .execute(client);
+
+  console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
   })
 
-   
+  it('should sign a transaction', async() => {
+    const  accountId = process.env.MY_ACCOUNT_ID;
+    const privateKey = process.env.MY_PRIVATE_KEY;
 
-  
+    const client = Client.forTestnet();
+
+    client.setOperator(accountId, privateKey);
+    const transaction = await new AccountUpdateTransaction()
+     .setAccountId(accountId)
+     .setKey(privateKey)
+     .execute(client)
+     //.freezeWith(client)
+
+
+     
+     const signedTransaction = transaction
+      PrivateKey.fromString("96371d4ffd34609146c6c55e15bdb9647476019847a8e7cc50b3b4b38cd291cb")
+
+    console.log(signedTransaction)
+     
+  })
 });
