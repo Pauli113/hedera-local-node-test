@@ -100,6 +100,13 @@ describe('hedera localnode', () => {
   console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
   })
 
+  it('should create a signed transaction', async() => {
+    const myAccountId = process.env.MY_ACCOUNT_ID;
+    const myPrivateKey = process.env.MY_PRIVATE_KEY;
+   
+
+  })
+
   it('should create an unsigned transaction', async()=> {
     const myAccountId = process.env.MY_ACCOUNT_ID;
     const myPrivateKey = process.env.MY_PRIVATE_KEY;
