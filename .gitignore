@@ -155,3 +155,4 @@ network-logs/minio-server/data/**
 
 
 .vscode
+.env

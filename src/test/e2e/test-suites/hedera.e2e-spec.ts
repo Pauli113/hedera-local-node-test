@@ -100,30 +100,6 @@ describe('hedera localnode', () => {
   console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
   })
 
-  it('should sign a transaction', async() => {
-    const  accountId = process.env.MY_ACCOUNT_ID;
-    const privateKey = process.env.MY_PRIVATE_KEY;
-    
-    
-
-    const client = Client.forTestnet();
-
-    client.setOperator(accountId, privateKey);
-    const transaction = await new AccountUpdateTransaction()
-     .setAccountId(accountId)
-     .setKey(privateKey)
-     .execute(client)
-     //.freezeWith(client)
-
-
-     
-     const signedTransaction = transaction
-      PrivateKey.fromString(privateKey)
-
-    console.log(signedTransaction)
-     
-  })
-
   it('should create an unsigned transaction', async()=> {
     const myAccountId = process.env.MY_ACCOUNT_ID;
     const myPrivateKey = process.env.MY_PRIVATE_KEY;
