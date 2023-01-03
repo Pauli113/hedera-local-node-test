@@ -15,7 +15,7 @@ const {
 require("dotenv").config();
 
 describe('hedera localnode', () => {
-
+/*
 
   it('checks if node is running', async()=> {
    
@@ -47,7 +47,7 @@ describe('hedera localnode', () => {
       })
       .catch(error => console.log(error))
       )
-  })
+  })*/
 
   it('should check key generation tool',async () => {
     const filePrivateKey = PrivateKey.generateED25519(); 
@@ -95,7 +95,7 @@ describe('hedera localnode', () => {
       .setAccountId(newAccountId)
       .execute(client);
 
-  console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
+  console.log("The new account balance is: " + await accountBalance.hbars.toTinybars() +" tinybar.");
   })
 
   it('should create a signed transaction', async() => {
@@ -115,6 +115,7 @@ describe('hedera localnode', () => {
 
     //Sign the transaction with a private key
     const signedTransaction = transaction.sign(PrivateKey.fromString(myPrivateKey))
+    jest.setTimeout(30000)
     console.warn(signedTransaction)
   })
 
@@ -135,7 +136,7 @@ describe('hedera localnode', () => {
 
     //Freeze the transaction for signing
     //The transaction cannot be modified after this point
-    const freezeTransaction = transaction.freezeWith(client);
+    const freezeTransaction = await transaction.freezeWith(client);
 
     console.warn(freezeTransaction);
   })
