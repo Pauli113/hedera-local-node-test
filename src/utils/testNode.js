@@ -24,13 +24,14 @@ async function main() {
         "Environment variables myAccountId and myPrivateKey must be present"
       );
     }
-    const node = { "127.0.0.1:50211": new AccountId(3) };
+    const node = { "127.0.0.1:50211": new AccountId(4) };
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
+    //const client = Client.forTestnet()
     client.setOperator(myAccountId, myPrivateKey);
 
     const newAccount = await new AccountCreateTransaction()
     .setKey(PrivateKey.fromString(myPrivateKey))
-    .setInitialBalance(new Hbar(1))
+    .setInitialBalance(new Hbar(10000))
     .execute(client)   
 
     console.log(newAccount)
@@ -46,9 +47,9 @@ async function main() {
         .setAccountId(newAccountId)
         .execute(client);
 
-    console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
+    console.warn("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
     
-    console.log(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
+    console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
 
     //getTransactionInformation(getReceipt.accountId)
     exit()

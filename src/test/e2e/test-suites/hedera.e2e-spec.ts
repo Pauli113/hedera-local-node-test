@@ -227,14 +227,58 @@ describe('hedera localnode', () => {
     const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
     const newAccountPrivateKey = PrivateKey.generateED25519(); 
     const newAccountPublicKey = newAccountPrivateKey.publicKey;
+
     const node = {"127.0.0.1:50211": new AccountId(3)};
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
     client.setOperator(myAccountId, myPrivateKey);
+   
     //Submit a transaction to your local node
     const transaction = await new AccountUpdateTransaction()
     .setAccountId(myAccountId)
     .setKey(newAccountPublicKey)
     .freezeWith(client)
+  })
+
+  it('test getReceipt', async()=> {
+    const myAccountId = '0.0.1032';
+    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
+    const newAccountPrivateKey = PrivateKey.generateED25519(); 
+    const newAccountPublicKey = newAccountPrivateKey.publicKey;
+    const node = {"127.0.0.1:50211": new AccountId(3)};
+    const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
+    client.setOperator(myAccountId, myPrivateKey);
+
+    const newAccount = await new AccountCreateTransaction()
+    .setKey(PrivateKey.fromString(myPrivateKey))
+    .setInitialBalance(new Hbar(1))
+    .freezeWith(client)  
+    
+    console.warn(newAccount)
+    
+
+    /*
+    const newAccount = await new AccountCreateTransaction()
+    .setKey(PrivateKey.fromString(myPrivateKey))
+    .setInitialBalance(new Hbar(1))
+    .execute(client)   
+
+    console.log(newAccount)
+
+    // Get the new account ID
+    const getReceipt = await newAccount.getReceipt(client);
+    const newAccountId = getReceipt.accountId;
+
+    console.log("The new account ID is: " +newAccountId);
+
+    //Verify the account balance
+    const accountBalance = await new AccountBalanceQuery()
+        .setAccountId(newAccountId)
+        .execute(client);
+
+    console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
+    */
+    console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
+
   })
 
 })
