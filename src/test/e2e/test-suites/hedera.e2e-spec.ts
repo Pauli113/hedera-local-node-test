@@ -201,7 +201,7 @@ describe('hedera localnode', () => {
     const signedTransaction = await transaction.sign(PrivateKey.fromString(myPrivateKey))
     console.warn(signedTransaction)
   })
-
+  //
   it('submits a transaction', async() => {
     const myAccountId = '0.0.1032';
     const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
