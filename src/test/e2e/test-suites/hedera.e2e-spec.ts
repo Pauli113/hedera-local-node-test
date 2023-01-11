@@ -202,26 +202,6 @@ describe('hedera localnode', () => {
     console.warn(signedTransaction)
   })
 
-  it('paul localnet - signed2', async() => {
-    const myAccountId = '0.0.1032';
-    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
-    const newAccountPrivateKey = PrivateKey.generateED25519(); 
-    const newAccountPublicKey = newAccountPrivateKey.publicKey;
-
-    const node = {"127.0.0.1:50211": new AccountId(3)};
-    const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
-    client.setOperator(myAccountId, myPrivateKey);
-   
-    const transaction = await new AccountUpdateTransaction()
-    .setAccountId(myAccountId)
-    .setKey(newAccountPublicKey)
-    .freezeWith(client)
-    //const txResponse = transaction.execute(client);
-
-    const signedTransaction = await transaction.sign(PrivateKey.fromString(myPrivateKey))
-    console.warn(signedTransaction)
-  })
-
   it('submits a transaction', async() => {
     const myAccountId = '0.0.1032';
     const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
