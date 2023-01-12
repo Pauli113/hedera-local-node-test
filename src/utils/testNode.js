@@ -46,7 +46,7 @@ async function main() {
         .setAccountId(newAccountId)
         .execute(client);
 
-    console.warn("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
+    console.warn("The new account balance is: " +accountBalance.hbars +" hbar.");
     
     console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
 
