@@ -113,7 +113,7 @@ describe('hedera localnode', () => {
     console.warn(signedTransaction)
   })
 /*
-  it('should create an unsigned transaction', async()=> {
+  it('should create an unsigned transaction - fails?', async()=> {
 
     const myAccountId = process.env.MY_ACCOUNT_ID;
     const myPrivateKey = process.env.MY_PRIVATE_KEY;
@@ -127,7 +127,8 @@ describe('hedera localnode', () => {
 
     const transaction = new AccountCreateTransaction()
     .setKey(newAccountPublicKey)
-    .setInitialBalance(Hbar.fromTinybars(1000));
+    .setInitialBalance(Hbar.fromTinybars(1000))
+    .execute(client)  
 
     //Freeze the transaction for signing
     //The transaction cannot be modified after this point
@@ -235,28 +236,6 @@ describe('hedera localnode', () => {
     
     console.warn(newAccount)
     
-
-    /*
-    const newAccount = await new AccountCreateTransaction()
-    .setKey(PrivateKey.fromString(myPrivateKey))
-    .setInitialBalance(new Hbar(1))
-    .execute(client)   
-
-    console.log(newAccount)
-
-    // Get the new account ID
-    const getReceipt = await newAccount.getReceipt(client);
-    const newAccountId = getReceipt.accountId;
-
-    console.log("The new account ID is: " +newAccountId);
-
-    //Verify the account balance
-    const accountBalance = await new AccountBalanceQuery()
-        .setAccountId(newAccountId)
-        .execute(client);
-
-    console.log("The new account balance is: " +accountBalance.hbars.toTinybars() +" tinybar.");
-    */
     console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
 
   })

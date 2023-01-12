@@ -50,21 +50,11 @@ async function main() {
     
     console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
 
-    //getTransactionInformation(getReceipt.accountId)
     exit()
 }
 
 
-const getTransactionInformation = async function(transactionIdFormatted) {
-    const url = "http://localhost:5551/api/v1/transactions/"+transactionIdFormatted
-    console.log('- Mirror Node Url: ' + url)
-    //await sleep(5);
-    axios.get(url, {})
-    .then(function (response) {
-        console.log(response.data.transactions);
-        process.exit(0);
-    })
-}
+
 /*
 const { Client, PrivateKey, AccountCreateTransaction, AccountBalanceQuery, Hbar} = require("@hashgraph/sdk");
 require("dotenv").config();
