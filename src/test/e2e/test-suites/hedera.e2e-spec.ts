@@ -35,10 +35,6 @@ describe('hedera localnode', () => {
       throw new Error("Environment variables myAccountId and myPrivateKey must be present");
   }
 
-  //need to switch to localnet
-  //const client = Client.forTestnet()
-  //const node = {"127.0.0.1:50211": new AccountId(3)};
-  //const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
   const node = {"127.0.0.1:50211": new AccountId(3)};
   const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
 
@@ -50,7 +46,7 @@ describe('hedera localnode', () => {
   .setKey(myPrivateKey)
   .setInitialBalance(Hbar.fromTinybars(1000));
 
-  // Get the new account ID
+  // Get the new account ID - doesnt work in tests
 //const getReceipt = await newAccount.getReceipt(client);
 //const newAccountId = getReceipt.accountId;
 
@@ -79,6 +75,8 @@ describe('hedera localnode', () => {
     console.warn(signedTransaction)
   })
 /*
+  //doesnt work in test but does run in testNode.js
+
   it('should create an unsigned transaction - fails?', async()=> {
 
     const myAccountId = process.env.MY_ACCOUNT_ID;
@@ -163,7 +161,6 @@ describe('hedera localnode', () => {
     .setAccountId(myAccountId)
     .setKey(newAccountPublicKey)
     .freezeWith(client)
-    //const txResponse = transaction.execute(client);
 
     const signedTransaction = await transaction.sign(PrivateKey.fromString(myPrivateKey))
     console.warn(signedTransaction)
