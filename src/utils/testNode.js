@@ -46,7 +46,7 @@ async function main() {
     
     console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
 
-    exit()
+   exit()
 }
 
 main();

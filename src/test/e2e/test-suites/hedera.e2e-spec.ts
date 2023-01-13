@@ -136,7 +136,6 @@ describe('hedera localnode', () => {
 
     const node = {"127.0.0.1:50211": new AccountId(3)};
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
-    //const privateKey = PrivateKey.fromStringECDSA(BASE_KEY)
     const privateKey = PrivateKey.fromStringECDSA(myPrivateKey)
     const publicKey = privateKey.publicKey;
 
