@@ -17,40 +17,6 @@ require("dotenv").config();
 describe('hedera localnode', () => {
     jest.setTimeout(1250000)
 
-/*
-
-  it('checks if node is running', async()=> {
-   
-      await(axios
-        .get('http://localhost:9090/testnet/dashboard?p1=1&k1=1671520505.063039003&p2=1&k2=1671520505.540006594&p3=1&k3=1671520496.265415003',{
-          responseType: "json",
-        })
-        .then(function (response) {
-          console.warn('node is running')
-          if(response.data=''){
-            throw 'No transactions'
-          }
-        })
-        .catch(error => console.log(error))
-        )     
-  })
-
-  it('checks if there are any transactions', async() => {
-    await(axios
-      .get('http://localhost:5551/api/v1/transactions',{
-        responseType: "json",
-      })
-      .then(function (response) {
-       
-        console.warn(response.data)
-        if(response.data=''){
-          throw 'No transactions'
-        }
-      })
-      .catch(error => console.log(error))
-      )
-  })*/
-
   it('should check key generation tool',async () => {
     const filePrivateKey = PrivateKey.generateED25519(); 
     console.warn(String(filePrivateKey))
@@ -201,43 +167,6 @@ describe('hedera localnode', () => {
 
     const signedTransaction = await transaction.sign(PrivateKey.fromString(myPrivateKey))
     console.warn(signedTransaction)
-  })
-  //
-  it('submits a transaction', async() => {
-    const myAccountId = '0.0.1032';
-    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
-    const newAccountPrivateKey = PrivateKey.generateED25519(); 
-    const newAccountPublicKey = newAccountPrivateKey.publicKey;
-
-    const node = {"127.0.0.1:50211": new AccountId(3)};
-    const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
-    client.setOperator(myAccountId, myPrivateKey);
-   
-    //Submit a transaction to your local node
-    const transaction = await new AccountUpdateTransaction()
-    .setAccountId(myAccountId)
-    .setKey(newAccountPublicKey)
-    .freezeWith(client)
-  })
-
-  it('test getReceipt', async()=> {
-    const myAccountId = '0.0.1032';
-    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
-    const newAccountPrivateKey = PrivateKey.generateED25519(); 
-    const newAccountPublicKey = newAccountPrivateKey.publicKey;
-    const node = {"127.0.0.1:50211": new AccountId(3)};
-    const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
-    client.setOperator(myAccountId, myPrivateKey);
-
-    const newAccount = await new AccountCreateTransaction()
-    .setKey(PrivateKey.fromString(myPrivateKey))
-    .setInitialBalance(new Hbar(1))
-    .freezeWith(client)  
-    
-    console.warn(newAccount)
-    
-    console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
-
   })
 
 })
