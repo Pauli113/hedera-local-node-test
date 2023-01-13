@@ -4,9 +4,7 @@ const {
     AccountCreateTransaction,
     AccountBalanceQuery,
     Hbar,
-    AccountId,
-    TransactionId,
-    CreateHTSToken
+    AccountId
     
 } = require("@hashgraph/sdk");
 const { exit } = require("process");
