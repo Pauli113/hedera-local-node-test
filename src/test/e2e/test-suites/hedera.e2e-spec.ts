@@ -27,8 +27,8 @@ describe('hedera localnode', () => {
   })
 
   it('should create an account', async() => {
-    const myAccountId = '0.0.1032';
-    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
+    const myAccountId = process.env.MY_ACCOUNT_ID;
+    const myPrivateKey = process.env.MY_PRIVATE_KEY;
     // If we weren't able to grab it, we should throw a new error
     if (myAccountId == null ||
       myPrivateKey == null ) {
@@ -128,11 +128,15 @@ describe('hedera localnode', () => {
   })
 
   it('paul localnet - unsigned', async() => {
-    const ACCOUNT_ID = '0.0.1032';
-    const BASE_KEY = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
+    //const myAccountId = process.env.MY_ACCOUNT_ID;
+    //const myPrivateKey = process.env.MY_PRIVATE_KEY;
+
+    const ACCOUNT_ID = process.env.MY_ACCOUNT_ID2;
+    const BASE_KEY = process.env.MY_PRIVATE_KEY2;
 
     const node = {"127.0.0.1:50211": new AccountId(3)};
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
+    //const privateKey = PrivateKey.fromStringECDSA(BASE_KEY)
     const privateKey = PrivateKey.fromStringECDSA(BASE_KEY)
     const publicKey = privateKey.publicKey;
 
@@ -148,8 +152,8 @@ describe('hedera localnode', () => {
   })
 
   it('paul localnet - signed', async() => {
-    const myAccountId = '0.0.1032';
-    const myPrivateKey = 'ab2ca606fb4a844c5fb6c64f747de3bfd763aff285409d97d197661c78d1316e';
+    const myAccountId = process.env.MY_ACCOUNT_ID
+    const myPrivateKey = process.env.MY_PRIVATE_KEY
     const newAccountPrivateKey = PrivateKey.generateED25519(); 
     const newAccountPublicKey = newAccountPrivateKey.publicKey;
 
