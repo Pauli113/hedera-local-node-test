@@ -9,14 +9,12 @@ const {
     CreateHTSToken
     
 } = require("@hashgraph/sdk");
-const axios = require('axios');
 const { exit } = require("process");
-//require("dotenv").config();
-const jest = require("jest");
+require('dotenv').config({ path:'../../.env' })
 
 async function main() {
-    const myAccountId = '0.0.2'
-    const myPrivateKey = '302e020100300506032b65700422042091132178e72057a1d7528025956fe39b0b847f200ab59b2fdd367017f3087137'
+    const myAccountId = String(process.env.MY_ACCOUNT_ID)
+    const myPrivateKey = String(process.env.MY_PRIVATE_KEY)
 
     if (myAccountId == null || myPrivateKey == null) {
       throw new Error(
