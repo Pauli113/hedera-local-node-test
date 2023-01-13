@@ -124,26 +124,26 @@ describe('hedera localnode', () => {
     //Freeze the transaction for signing
     //The transaction cannot be modified after this point
     const freezeTransaction = transaction.freezeWith(client);
+    console.warn(freezeTransaction)
 
   })
 
   it('paul localnet - unsigned', async() => {
-    //const myAccountId = process.env.MY_ACCOUNT_ID;
-    //const myPrivateKey = process.env.MY_PRIVATE_KEY;
-
-    const ACCOUNT_ID = process.env.MY_ACCOUNT_ID2;
-    const BASE_KEY = process.env.MY_PRIVATE_KEY2;
+    const myAccountId = process.env.MY_ACCOUNT_ID2;
+    const myPrivateKey = process.env.MY_PRIVATE_KEY2;
+    const newAccountPrivateKey = PrivateKey.generateED25519(); 
+    const newAccountPublicKey = newAccountPrivateKey.publicKey;
 
     const node = {"127.0.0.1:50211": new AccountId(3)};
     const client = Client.forNetwork(node).setMirrorNetwork("127.0.0.1:5600");
     //const privateKey = PrivateKey.fromStringECDSA(BASE_KEY)
-    const privateKey = PrivateKey.fromStringECDSA(BASE_KEY)
+    const privateKey = PrivateKey.fromStringECDSA(myPrivateKey)
     const publicKey = privateKey.publicKey;
 
-    client.setOperator(ACCOUNT_ID, privateKey);
+    client.setOperator(myAccountId, privateKey);
 
     const transaction = new AccountCreateTransaction()
-    .setKey(publicKey)
+    .setKey(newAccountPublicKey)
     .setInitialBalance(Hbar.fromTinybars(1000));
 
     const freezeTransaction = transaction.freezeWith(client);
