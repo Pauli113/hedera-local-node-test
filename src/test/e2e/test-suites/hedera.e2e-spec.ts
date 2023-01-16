@@ -46,6 +46,8 @@ describe('hedera localnode', () => {
   .setKey(myPrivateKey)
   .setInitialBalance(Hbar.fromTinybars(1000));
 
+  console.warn(newAccount)
+
   })
 
   it('should create a signed transaction', async() => {
