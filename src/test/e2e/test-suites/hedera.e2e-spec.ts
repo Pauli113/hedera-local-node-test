@@ -138,10 +138,10 @@ describe('hedera localnode', () => {
 
     const transaction = new AccountCreateTransaction()
     .setKey(newAccountPublicKey)
-    .setInitialBalance(Hbar.fromTinybars(1000));
+    .setInitialBalance(Hbar.fromTinybars(1000))
+    .freezeWith(client)
 
-    const freezeTransaction = transaction.freezeWith(client);
-    console.warn(freezeTransaction)
+    console.warn(transaction)
 
   })
 
