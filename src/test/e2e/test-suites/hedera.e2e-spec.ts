@@ -46,13 +46,6 @@ describe('hedera localnode', () => {
   .setKey(myPrivateKey)
   .setInitialBalance(Hbar.fromTinybars(1000));
 
-  // Get the new account ID - doesnt work in tests only in testNode.js
-//const getReceipt = await newAccount.getReceipt(client);
-//const newAccountId = getReceipt.accountId;
-
-//Log the account ID
-//console.log("The new account ID is: " +newAccountId);
-
   })
 
   it('should create a signed transaction', async() => {

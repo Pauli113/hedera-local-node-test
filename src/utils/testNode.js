@@ -42,9 +42,11 @@ async function main() {
         .setAccountId(newAccountId)
         .execute(client);
 
-    console.warn("The new account balance is: " +accountBalance.hbars +" hbar.");
+    console.warn("The new account balance is: " +accountBalance.hbars +"bar.");
     
     console.warn(`- Mirror Node Explorer URL: http://localhost:9090/#/devnet/transaction/`);
+
+    console.warn("Explorer url of the new account: http://localhost:9090/devnet/account/"+newAccountId)
 
    exit()
 }
